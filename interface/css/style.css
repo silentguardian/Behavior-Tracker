@@ -1,0 +1,45 @@
+body
+{
+	background: url(../img/background.png) no-repeat;
+	padding-top: 180px;
+	padding-bottom: 10px;
+}
+td.align_center, th.align_center
+{
+	text-align: center;
+}
+.table
+{
+	margin-top: 1em;
+}
+.table td
+{
+	vertical-align: middle;
+}
+.padding
+{
+	padding: 1em 0;
+}
+.clear
+{
+	clear: both;
+}
+.half
+{
+	width: 48%;
+}
+.page-header
+{
+	margin: 5px 0;
+	padding: 5px 0;
+}
+.page-header h2, .page-header h3
+{
+	font-weight: normal;
+}
+.content
+{
+	font-size: 1.1em;
+	line-height: 1.4em;
+	margin-top: 1em;
+}
