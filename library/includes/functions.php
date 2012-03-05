@@ -212,6 +212,7 @@ function template_menu()
 		'teacher' => 'Teachers',
 		'student' => 'Students',
 		'reason' => 'Reasons',
+		'profile' => 'Profile',
 	);
 
 	echo '

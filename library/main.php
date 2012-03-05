@@ -29,7 +29,7 @@ load_user();
 
 $modules = array('home', 'list', 'about');
 if ($user['teacher'])
-	$modules = array_merge($modules, array('logout', 'entry'));
+	$modules = array_merge($modules, array('logout', 'entry', 'profile'));
 else
 	$modules = array_merge($modules, array('login'));
 if ($user['admin'])
