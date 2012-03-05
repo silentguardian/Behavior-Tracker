@@ -20,8 +20,8 @@ function template_entry_list()
 	echo '
 		<div class="page-header">
 			<div class="pull-right">
-				<a class="btn btn-success" href="./?module=entry&amp;action=plus">Add Plus Entry</a>
-				<a class="btn btn-warning" href="./?module=entry&amp;action=minus">Add Minus Entry</a>
+				<a class="btn btn-success" href="', build_url(array('entry', 'plus')), '">Add Plus Entry</a>
+				<a class="btn btn-warning" href="', build_url(array('entry', 'minus')), '">Add Minus Entry</a>
 			</div>
 			<h2>Entry List</h2>
 		</div>
@@ -58,8 +58,8 @@ function template_entry_list()
 					<td>', $entry['teacher'], '</td>
 					<td>', $entry['date'], '</td>
 					<td class="span2 align_center">
-						<a class="btn btn-info" href="./?module=entry&amp;action=edit&amp;entry=', $entry['id'], '">Edit</a>
-						<a class="btn btn-danger" href="./?module=entry&amp;action=delete&amp;entry=', $entry['id'], '">Delete</a>
+						<a class="btn btn-info" href="', build_url(array('entry', 'edit', $entry['id'])), '">Edit</a>
+						<a class="btn btn-danger" href="', build_url(array('entry', 'delete', $entry['id'])), '">Delete</a>
 					</td>
 				</tr>';
 	}
@@ -74,7 +74,7 @@ function template_entry_edit()
 	global $template;
 
 	echo '
-		<form class="form-horizontal" action="./?module=entry&amp;action=edit" method="post">
+		<form class="form-horizontal" action="', build_url(array('entry', 'edit')), '" method="post">
 			<fieldset>
 				<legend>', (!$template['entry']['is_new'] ? 'Edit' : 'Add'), ' Entry</legend>
 				<div class="control-group">

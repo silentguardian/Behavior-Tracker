@@ -20,7 +20,7 @@ function template_reason_list()
 	echo '
 		<div class="page-header">
 			<div class="pull-right">
-				<a class="btn btn-primary" href="./?module=reason&amp;action=edit">Add Reason</a>
+				<a class="btn btn-primary" href="', build_url(array('reason', 'edit')), '">Add Reason</a>
 			</div>
 			<h2>Reason List</h2>
 		</div>
@@ -51,8 +51,8 @@ function template_reason_list()
 					<td>', $reason['type'], '</td>
 					<td>', $reason['entries'], '</td>
 					<td class="span2 align_center">
-						<a class="btn btn-info" href="./?module=reason&amp;action=edit&amp;reason=', $reason['id'], '">Edit</a>
-						<a class="btn btn-danger" href="./?module=reason&amp;action=delete&amp;reason=', $reason['id'], '">Delete</a>
+						<a class="btn btn-info" href="', build_url(array('reason', 'edit', $reason['id'])), '">Edit</a>
+						<a class="btn btn-danger" href="', build_url(array('reason', 'delete', $reason['id'])), '">Delete</a>
 					</td>
 				</tr>';
 	}
@@ -67,7 +67,7 @@ function template_reason_edit()
 	global $template;
 
 	echo '
-		<form class="form-horizontal" action="./?module=reason&amp;action=edit" method="post">
+		<form class="form-horizontal" action="', build_url(array('reason', 'edit')), '" method="post">
 			<fieldset>
 				<legend>', (!$template['reason']['is_new'] ? 'Edit' : 'Add'), ' Reason</legend>
 				<div class="control-group">

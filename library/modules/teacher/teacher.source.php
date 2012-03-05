@@ -150,7 +150,7 @@ function teacher_edit()
 	}
 
 	if (!empty($_POST['save']) || !empty($_POST['cancel']))
-		redirect('./?module=teacher');
+		redirect(build_url('teacher'));
 
 	if ($is_new)
 	{
@@ -214,7 +214,7 @@ function teacher_delete()
 			DELETE FROM entry
 			WHERE id_teacher = $id_teacher");
 
-		redirect('./?module=teacher');
+		redirect(build_url('teacher'));
 	}
 	else
 		fatal_error('The teacher requested does not exist!');

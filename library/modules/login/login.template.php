@@ -16,7 +16,7 @@ if (!defined('CORE'))
 function template_login_main()
 {
 	echo '
-		<form class="form-horizontal" action="./?module=login" method="post">
+		<form class="form-horizontal" action="', build_url('login'), '" method="post">
 			<fieldset>
 				<legend>Teacher Login</legend>
 				<div class="control-group">

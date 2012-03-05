@@ -14,6 +14,7 @@ $core = array();
 
 $core['version'] = '1.0';
 $core['cookie'] = 'bt1976';
+$core['clean_url'] = false;
 
 $core['site_dir'] = dirname(__FILE__);
 $core['root_dir'] = $core['site_dir'] . '/library';

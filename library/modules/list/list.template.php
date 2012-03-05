@@ -26,12 +26,12 @@ function template_list_list()
 		if (empty($template['teacher_filter']))
 		{
 			echo '
-			<a class="btn btn-info" href="./?module=list&amp;action=filter&amp;class=', $template['class_filter'], '&amp;teacher=', $user['id'], '">Filter My Entries</a>';
+			<a class="btn btn-info" href="', build_url(array('module' => 'list', 'action' => 'filter', 'class' => $template['class_filter'], 'teacher' => $user['id']), false), '">Filter My Entries</a>';
 		}
 		else
 		{
 			echo '
-				<a class="btn btn-danger" href="./?module=list&amp;action=filter&amp;class=', $template['class_filter'], '&amp;teacher=0">Remove Teacher Filter</a>';
+				<a class="btn btn-danger" href="', build_url(array('module' => 'list', 'action' => 'filter', 'class' => $template['class_filter'], 'teacher' => 0), false), '">Remove Teacher Filter</a>';
 		}
 	}
 
@@ -40,12 +40,12 @@ function template_list_list()
 		if (!empty($template['class_filter']) && $template['class_filter'] === $class['id'])
 		{
 			echo '
-				<a class="btn btn-danger" href="./?module=list&amp;action=filter&amp;class=0&amp;teacher=', $template['teacher_filter'], '">Remove Class Filter</a>';
+				<a class="btn btn-danger" href="', build_url(array('module' => 'list', 'action' => 'filter', 'class' => 0, 'teacher' => $template['teacher_filter']), false), '">Remove Class Filter</a>';
 		}
 		else
 		{
 			echo '
-				<a class="btn" href="./?module=list&amp;action=filter&amp;class=', $class['id'], '&amp;teacher=', $template['teacher_filter'], '">Filter ', $class['name'], ' Class</a>';
+				<a class="btn" href="', build_url(array('module' => 'list', 'action' => 'filter', 'class' => $class['id'], 'teacher' => $template['teacher_filter']), false), '">Filter ', $class['name'], ' Class</a>';
 		}
 	}
 
@@ -86,7 +86,7 @@ function template_list_list()
 					<td class="span1 align_center">', $student['plus'], '</td>
 					<td class="span1 align_center">', $student['minus'], '</td>
 					<td class="span2 align_center">
-						<a class="btn" href="./?module=list&amp;action=detail&amp;student=', $student['id'], '">Details</a>
+						<a class="btn" href="', build_url(array('module' => 'list', 'action' => 'detail', 'student' => $student['id']), false), '">Details</a>
 					</td>
 				</tr>';
 	}
@@ -103,7 +103,7 @@ function template_list_detail()
 	echo '
 		<div class="page-header">
 			<div class="pull-right">
-				<a class="btn" href="./?module=list">Back to List</a>
+				<a class="btn" href="', build_url('list'), '">Back to List</a>
 			</div>
 			<h2>Student Details - ', $template['student'], '</h2>
 		</div>';

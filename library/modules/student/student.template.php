@@ -20,7 +20,7 @@ function template_student_list()
 	echo '
 		<div class="page-header">
 			<div class="pull-right">
-				<a class="btn btn-primary" href="./?module=student&amp;action=edit">Add Student</a>
+				<a class="btn btn-primary" href="', build_url(array('student', 'edit')), '">Add Student</a>
 			</div>
 			<h2>Student List</h2>
 		</div>
@@ -57,8 +57,8 @@ function template_student_list()
 					<td>', $student['plus'], '</td>
 					<td>', $student['minus'], '</td>
 					<td class="span2 align_center">
-						<a class="btn btn-info" href="./?module=student&amp;action=edit&amp;student=', $student['id'], '">Edit</a>
-						<a class="btn btn-danger" href="./?module=student&amp;action=delete&amp;student=', $student['id'], '">Delete</a>
+						<a class="btn btn-info" href="', build_url(array('student', 'edit', $student['id'])), '">Edit</a>
+						<a class="btn btn-danger" href="', build_url(array('student', 'delete', $student['id'])), '">Delete</a>
 					</td>
 				</tr>';
 	}
@@ -73,7 +73,7 @@ function template_student_edit()
 	global $template;
 
 	echo '
-		<form class="form-horizontal" action="./?module=student&amp;action=edit" method="post">
+		<form class="form-horizontal" action="', build_url(array('student', 'edit')), '" method="post">
 			<fieldset>
 				<legend>', (!$template['student']['is_new'] ? 'Edit' : 'Add'), ' Student</legend>
 				<div class="control-group">

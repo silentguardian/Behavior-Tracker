@@ -20,7 +20,7 @@ function template_class_list()
 	echo '
 		<div class="page-header">
 			<div class="pull-right">
-				<a class="btn btn-primary" href="./?module=class&amp;action=edit">Add Class</a>
+				<a class="btn btn-primary" href="', build_url(array('class', 'edit')), '">Add Class</a>
 			</div>
 			<h2>Class List</h2>
 		</div>
@@ -49,10 +49,10 @@ function template_class_list()
 					<td>', $class['name'], '</td>
 					<td>', $class['size'], '</td>
 					<td class="span4 align_center">
-						<a class="btn btn-success" href="./?module=class&amp;action=plus&amp;class=', $class['id'], '">Add Plus</a>
-						<a class="btn btn-warning" href="./?module=class&amp;action=minus&amp;class=', $class['id'], '">Add Minus</a>
-						<a class="btn btn-info" href="./?module=class&amp;action=edit&amp;class=', $class['id'], '">Edit</a>
-						<a class="btn btn-danger" href="./?module=class&amp;action=delete&amp;class=', $class['id'], '">Delete</a>
+						<a class="btn btn-success" href="', build_url(array('class', 'plus', $class['id'])), '">Add Plus</a>
+						<a class="btn btn-warning" href="', build_url(array('class', 'minus', $class['id'])), '">Add Minus</a>
+						<a class="btn btn-info" href="', build_url(array('class', 'edit', $class['id'])), '">Edit</a>
+						<a class="btn btn-danger" href="', build_url(array('class', 'delete', $class['id'])), '">Delete</a>
 					</td>
 				</tr>';
 	}
@@ -67,7 +67,7 @@ function template_class_entry()
 	global $template;
 
 	echo '
-		<form class="form-horizontal" action="./?module=class&amp;action=', $template['entry']['type'], '" method="post">
+		<form class="form-horizontal" action="', build_url(array('class', $template['entry']['type'])), '" method="post">
 			<fieldset>
 				<legend>Add Class Entry - ', $template['entry']['class']['name'], '</legend>
 				<div class="control-group">
@@ -151,7 +151,7 @@ function template_class_edit()
 	global $template;
 
 	echo '
-		<form class="form-horizontal" action="./?module=class&amp;action=edit" method="post">
+		<form class="form-horizontal" action="', build_url(array('class', 'edit')), '" method="post">
 			<fieldset>
 				<legend>', (!$template['class']['is_new'] ? 'Edit' : 'Add'), ' Class</legend>
 				<div class="control-group">

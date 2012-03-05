@@ -139,7 +139,7 @@ function student_edit()
 	}
 
 	if (!empty($_POST['save']) || !empty($_POST['cancel']))
-		redirect('./?module=student');
+		redirect(build_url('student'));
 
 	if ($is_new)
 	{
@@ -220,7 +220,7 @@ function student_delete()
 			DELETE FROM entry
 			WHERE id_student = $id_student");
 
-		redirect('./?module=student');
+		redirect(build_url('student'));
 	}
 	else
 		fatal_error('The student requested does not exist!');

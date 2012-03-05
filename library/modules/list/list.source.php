@@ -96,56 +96,6 @@ function list_list($filter = array())
 	$core['current_template'] = 'list_list';
 }
 
-function list_filter()
-{
-	global $template, $user;
-
-	$filter = array();
-
-	$id_class = !empty($_REQUEST['class']) ? (int) $_REQUEST['class'] : 0;
-	$id_teacher = !empty($_REQUEST['teacher']) ? (int) $_REQUEST['teacher'] : 0;
-
-	if ($id_class > 0)
-	{
-		$request = db_query("
-			SELECT id_class, class_name
-			FROM class
-			WHERE id_class = $id_class
-			LIMIT 1");
-		list ($id_class, $class_name) = db_fetch_row($request);
-		db_free_result($request);
-
-		if (empty($id_class))
-			fatal_error('The class requested does not exist!');
-
-		$filter['class'] = array(
-			'id' => $id_class,
-			'name' => $class_name,
-		);
-	}
-
-	if ($id_teacher > 0)
-	{
-		$request = db_query("
-			SELECT id_teacher, teacher_name, teacher_surname
-			FROM teacher
-			WHERE id_teacher = $id_teacher
-			LIMIT 1");
-		list ($id_teacher, $teacher_name, $teacher_surname) = db_fetch_row($request);
-		db_free_result($request);
-
-		if (empty($id_teacher))
-			fatal_error('The teacher requested does not exist!');
-
-		$filter['teacher'] = array(
-			'id' => $id_teacher,
-			'name' => $teacher_name . ' ' . $teacher_surname,
-		);
-	}
-
-	list_list($filter);
-}
-
 function list_detail()
 {
 	global $core, $template;
@@ -210,4 +160,54 @@ function list_detail()
 	$template['student'] = $student_name . ' ' . $student_surname;
 	$template['page_title'] = 'Student Details - ' . $template['student'];
 	$core['current_template'] = 'list_detail';
+}
+
+function list_filter()
+{
+	global $template, $user;
+
+	$filter = array();
+
+	$id_class = !empty($_REQUEST['class']) ? (int) $_REQUEST['class'] : 0;
+	$id_teacher = !empty($_REQUEST['teacher']) ? (int) $_REQUEST['teacher'] : 0;
+
+	if ($id_class > 0)
+	{
+		$request = db_query("
+			SELECT id_class, class_name
+			FROM class
+			WHERE id_class = $id_class
+			LIMIT 1");
+		list ($id_class, $class_name) = db_fetch_row($request);
+		db_free_result($request);
+
+		if (empty($id_class))
+			fatal_error('The class requested does not exist!');
+
+		$filter['class'] = array(
+			'id' => $id_class,
+			'name' => $class_name,
+		);
+	}
+
+	if ($id_teacher > 0)
+	{
+		$request = db_query("
+			SELECT id_teacher, teacher_name, teacher_surname
+			FROM teacher
+			WHERE id_teacher = $id_teacher
+			LIMIT 1");
+		list ($id_teacher, $teacher_name, $teacher_surname) = db_fetch_row($request);
+		db_free_result($request);
+
+		if (empty($id_teacher))
+			fatal_error('The teacher requested does not exist!');
+
+		$filter['teacher'] = array(
+			'id' => $id_teacher,
+			'name' => $teacher_name . ' ' . $teacher_surname,
+		);
+	}
+
+	list_list($filter);
 }

@@ -154,6 +154,47 @@ function clean_request()
 	$_REQUEST = $_POST + $_GET;
 }
 
+function build_url($parts = array(), $quick = true)
+{
+	global $core;
+
+	$url = './';
+
+	if (!is_array($parts))
+		$parts = array($parts);
+	if (empty($parts) || $parts == array('home'))
+		return $url;
+
+	if ($core['clean_url'] === true)
+		$url .= implode('/', $parts);
+	else
+	{
+		if ($quick)
+		{
+			foreach ($parts as $level => $part)
+			{
+				if ($level == 0)
+					$url .= '?module=' . $part;
+				elseif ($level == 1)
+					$url .= '&amp;action=' . $part;
+				elseif ($level == 2)
+					$url .= '&amp;' . $parts[0] . '=' . $part;
+			}
+		}
+		else
+		{
+			$temp_parts = array();
+
+			foreach ($parts as $key => $value)
+				$temp_parts[] = $key . '=' . $value;
+
+			$url .= '?' . implode('&amp;', $temp_parts);
+		}
+	}
+
+	return $url;
+}
+
 function template_menu()
 {
 	global $core, $user, $modules;
@@ -182,7 +223,7 @@ function template_menu()
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="./">Behavior Tracker</a>
+				<a class="brand" href="', build_url(), '">Behavior Tracker</a>
 				<div class="nav-collapse">
 					<ul class="nav">';
 
@@ -196,7 +237,7 @@ function template_menu()
 		elseif (!empty($modules) && in_array($key, $modules))
 		{
 			echo '
-						<li', ($key === $core['current_module'] ? ' class="active"' : ''), '><a href="./', ($key !== 'home' ? '?module=' . $key : ''), '">', $value, '</a></li>';
+						<li', ($key === $core['current_module'] ? ' class="active"' : ''), '><a href="', build_url($key), '">', $value, '</a></li>';
 		}
 	}
 

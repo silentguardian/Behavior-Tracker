@@ -17,5 +17,5 @@ function logout_main()
 {
 	create_cookie(-3600, 0);
 
-	redirect('./');
+	redirect(build_url());
 }

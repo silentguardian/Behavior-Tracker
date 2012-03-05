@@ -138,7 +138,7 @@ function entry_edit($type = 0)
 	}
 
 	if (!empty($_POST['save']) || !empty($_POST['cancel']))
-		redirect('./?module=entry');
+		redirect(build_url('entry'));
 
 	if ($is_new)
 	{
@@ -250,7 +250,7 @@ function entry_delete()
 			WHERE id_entry = $id_entry
 			LIMIT 1");
 
-		redirect('./?module=entry');
+		redirect(build_url('entry'));
 	}
 	else
 		fatal_error('The entry requested does not exist!');

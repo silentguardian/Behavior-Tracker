@@ -128,7 +128,7 @@ function reason_edit()
 	}
 
 	if (!empty($_POST['save']) || !empty($_POST['cancel']))
-		redirect('./?module=reason');
+		redirect(build_url('reason'));
 
 	if ($is_new)
 	{
@@ -188,7 +188,7 @@ function reason_delete()
 			DELETE FROM entry
 			WHERE id_reason = $id_reason");
 
-		redirect('./?module=reason');
+		redirect(build_url('reason'));
 	}
 	else
 		fatal_error('The reason requested does not exist!');

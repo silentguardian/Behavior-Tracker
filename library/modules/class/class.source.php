@@ -133,7 +133,7 @@ function class_entry($type = 0)
 	}
 
 	if (!empty($_POST['save']) || !empty($_POST['cancel']))
-		redirect('./?module=class');
+		redirect(build_url('class'));
 
 	$today = getdate();
 
@@ -256,7 +256,7 @@ function class_edit()
 	}
 
 	if (!empty($_POST['save']) || !empty($_POST['cancel']))
-		redirect('./?module=class');
+		redirect(build_url('class'));
 
 	if ($is_new)
 	{
@@ -331,7 +331,7 @@ function class_delete()
 			WHERE id_class = $id_class
 			LIMIT 1");
 
-		redirect('./?module=class');
+		redirect(build_url('class'));
 	}
 	else
 		fatal_error('The class requested does not exist!');

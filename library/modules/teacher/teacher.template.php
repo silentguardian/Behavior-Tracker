@@ -20,7 +20,7 @@ function template_teacher_list()
 	echo '
 		<div class="page-header">
 			<div class="pull-right">
-				<a class="btn btn-primary" href="./?module=teacher&amp;action=edit">Add Teacher</a>
+				<a class="btn btn-primary" href="', build_url(array('teacher', 'edit')), '">Add Teacher</a>
 			</div>
 			<h2>Teacher List</h2>
 		</div>
@@ -53,8 +53,8 @@ function template_teacher_list()
 					<td>', $teacher['alias'], '</td>
 					<td>', $teacher['entries'], '</td>
 					<td class="span2 align_center">
-						<a class="btn btn-info" href="./?module=teacher&amp;action=edit&amp;teacher=', $teacher['id'], '">Edit</a>
-						<a class="btn btn-danger" href="./?module=teacher&amp;action=delete&amp;teacher=', $teacher['id'], '">Delete</a>
+						<a class="btn btn-info" href="', build_url(array('teacher', 'edit', $teacher['id'])), '">Edit</a>
+						<a class="btn btn-danger" href="', build_url(array('teacher', 'delete', $teacher['id'])), '">Delete</a>
 					</td>
 				</tr>';
 	}
@@ -69,7 +69,7 @@ function template_teacher_edit()
 	global $template;
 
 	echo '
-		<form class="form-horizontal" action="./?module=teacher&amp;action=edit" method="post">
+		<form class="form-horizontal" action="', build_url(array('teacher', 'edit')), '" method="post">
 			<fieldset>
 				<legend>', (!$template['teacher']['is_new'] ? 'Edit' : 'Add'), ' Teacher</legend>
 				<div class="control-group">

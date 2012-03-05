@@ -39,7 +39,7 @@ function login_main()
 
 		create_cookie(60 * 3153600, $id, $hash);
 
-		redirect('./');
+		redirect(build_url());
 	}
 
 	$template['page_title'] = 'Teacher Login';
