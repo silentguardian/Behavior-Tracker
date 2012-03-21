@@ -16,8 +16,8 @@ $start_time = microtime();
 
 ob_start();
 
-require_once($core['includes_dir'] . '/database.php');
-require_once($core['includes_dir'] . '/common.php');
+require $core['includes_dir'] . '/database.php';
+require $core['includes_dir'] . '/common.php';
 
 $template = array();
 $user = array();

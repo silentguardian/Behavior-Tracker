@@ -10,5 +10,5 @@
  * @version 1.0
  */
 
-require_once(dirname(__FILE__) . '/config.php');
-require_once($core['root_dir'] . '/main.php');
+require dirname(__FILE__) . '/config.php';
+require $core['root_dir'] . '/main.php';

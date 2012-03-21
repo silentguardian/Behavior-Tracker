@@ -17,8 +17,8 @@ function load_module($module)
 {
 	global $core;
 
-	require_once($core['modules_dir'] . '/' . $module . '/' . $module . '.source.php');
-	require_once($core['modules_dir'] . '/' . $module . '/' . $module . '.template.php');
+	require_once $core['modules_dir'] . '/' . $module . '/' . $module . '.source.php';
+	require_once $core['modules_dir'] . '/' . $module . '/' . $module . '.template.php';
 }
 
 function load_user()
