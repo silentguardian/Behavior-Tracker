@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteRule ^list/detail/([0-9]+)/?$ ?module=list&action=detail&student=$1
+RewriteRule ^list/filter/([0-9]+)/([0-9]+)/?$ ?module=list&action=filter&class=$1&teacher=$2
+RewriteRule ^([a-z]+)/?$ ?module=$1
+RewriteRule ^([a-z]+)/([a-z]+)/?$ ?module=$1&action=$2
+RewriteRule ^([a-z]+)/([a-z]+)/([0-9]+)/?$ ?module=$1&action=$2&$1=$3
