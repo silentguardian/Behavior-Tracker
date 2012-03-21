@@ -101,7 +101,7 @@ function create_cookie($length, $user, $pass = '')
 	global $core;
 
 	$data = serialize(empty($user) ? array(0, '', 0) : array($user, $pass, time() + $length));
-	$url = parse_url('http://' . (empty($_SERVER['HTTP_HOST']) ? $_SERVER['SERVER_NAME'] : $_SERVER['HTTP_HOST']) . (strtr(dirname($_SERVER['PHP_SELF']), '\\', '/') == '/' ? '' : strtr(dirname($_SERVER['PHP_SELF']), '\\', '/')));
+	$url = parse_url($core['site_url']);
 
 	setcookie($core['cookie'], $data, time() + $length, $url['path'], '', 0);
 
@@ -156,7 +156,7 @@ function build_url($parts = array(), $quick = true)
 {
 	global $core;
 
-	$url = './';
+	$url = $core['site_url'];
 
 	if (!is_array($parts))
 		$parts = array($parts);
@@ -222,7 +222,7 @@ function template_menu()
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="', build_url(), '">Behavior Tracker</a>
+				<a class="brand" href="', build_url(), '">', $core['title'], '</a>
 				<div class="nav-collapse">
 					<ul class="nav">';
 
@@ -268,9 +268,9 @@ function template_header()
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>', $template['page_title'], '</title>
-	<link href="interface/css/bootstrap.min.css" rel="stylesheet">
-	<link href="interface/css/bootstrap-responsive.min.css" rel="stylesheet">
-	<link href="interface/css/style.css" rel="stylesheet">
+	<link href="', $core['site_url'], 'interface/css/bootstrap.min.css" rel="stylesheet">
+	<link href="', $core['site_url'], 'interface/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="', $core['site_url'], 'interface/css/style.css" rel="stylesheet">
 	<!--[if lt IE 9]>
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -292,11 +292,11 @@ function template_footer()
 
 	echo '
 		<p class="pull-right">
-			<small>Behavior Tracker ', $core['version'], ' &copy; 2012, Selman Eser | Time: ', $time, ' Queries: ', $queries, '</small>
+			<small>', $core['title'], ' ', $core['version'], ' &copy; 2012, Selman Eser | Time: ', $time, ' Queries: ', $queries, '</small>
 		</p>
 	</div>
-	<script src="interface/js/jquery.js"></script>
-	<script src="interface/js/bootstrap.min.js"></script>
+	<script src="', $core['site_url'], 'interface/js/jquery.js"></script>
+	<script src="', $core['site_url'], 'interface/js/bootstrap.min.js"></script>
 </body>
 </html>';
 }
@@ -329,9 +329,9 @@ function ob_exit()
 	global $core, $template;
 
 	if (empty($template['page_title']))
-		$template['page_title'] = 'Behavior Tracker';
+		$template['page_title'] = $core['title'];
 	else
-		$template['page_title'] .= ' - Behavior Tracker';
+		$template['page_title'] .= ' - ' . $core['title'];
 
 	template_header();
 
