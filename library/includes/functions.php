@@ -45,7 +45,7 @@ function load_user()
 		$request = db_query("
 			SELECT
 				id_teacher, teacher_name, teacher_surname,
-				teacher_alias, teacher_password, is_admin
+				teacher_alias, teacher_password
 			FROM teacher
 			WHERE id_teacher = $user[id]
 			LIMIT 1");
@@ -58,7 +58,6 @@ function load_user()
 				'name' => $row['teacher_name'],
 				'surname' => $row['teacher_surname'],
 				'alias' => $row['teacher_alias'],
-				'admin' => !empty($row['is_admin']),
 				'teacher' => true,
 			);
 		}
@@ -73,7 +72,6 @@ function load_user()
 		$user = array(
 			'id' => 0,
 			'teacher' => false,
-			'admin' => false,
 		);
 	}
 	else

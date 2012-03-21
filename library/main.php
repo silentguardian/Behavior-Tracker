@@ -29,11 +29,9 @@ load_user();
 
 $modules = array('home', 'list', 'about');
 if ($user['teacher'])
-	$modules = array_merge($modules, array('logout', 'entry', 'profile'));
+	$modules = array_merge($modules, array('logout', 'entry', 'profile', 'class', 'teacher', 'student', 'reason'));
 else
 	$modules = array_merge($modules, array('login'));
-if ($user['admin'])
-	$modules = array_merge($modules, array('class', 'teacher', 'student', 'reason'));
 
 $core['current_module'] = 'home';
 if (!empty($_REQUEST['module']) && in_array($_REQUEST['module'], $modules))
