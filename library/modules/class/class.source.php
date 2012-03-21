@@ -17,7 +17,7 @@ function class_main()
 {
 	global $core;
 
-	$actions = array('list', 'plus', 'minus', 'edit', 'delete');
+	$actions = array('list', 'plus', 'minus', 'edit', 'random', 'delete');
 
 	$core['current_action'] = 'list';
 	if (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], $actions))
@@ -289,6 +289,45 @@ function class_edit()
 
 	$template['page_title'] = (!$is_new ? 'Edit' : 'Add') . ' Class';
 	$core['current_template'] = 'class_edit';
+}
+
+function class_random()
+{
+	global $core, $template;
+
+	$id_class = !empty($_REQUEST['class']) ? (int) $_REQUEST['class'] : 0;
+
+	$request = db_query("
+		SELECT id_class
+		FROM class
+		WHERE id_class = $id_class
+		LIMIT 1");
+	list ($id_class) = db_fetch_row($request);
+	db_free_result($request);
+
+	if (empty($id_class))
+		fatal_error('The class requested does not exist!');
+
+	$request = db_query("
+		SELECT student_name, student_surname
+		FROM student
+		WHERE id_class = $id_class
+		ORDER BY RAND()
+		LIMIT 1");
+	while ($row = db_fetch_assoc($request))
+	{
+		$template['student'] = array(
+			'name' => $row['student_name'],
+			'surname' => $row['student_surname'],
+		);
+	}
+	db_free_result($request);
+
+	if (empty($template['student']))
+		fatal_error('The class requested does not have any students!');
+
+	$template['page_title'] = 'Random Student';
+	$core['current_template'] = 'class_random';
 }
 
 function class_delete()

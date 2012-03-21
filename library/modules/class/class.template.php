@@ -48,9 +48,10 @@ function template_class_list()
 				<tr>
 					<td>', $class['name'], '</td>
 					<td>', $class['size'], '</td>
-					<td class="span4 align_center">
+					<td class="span5 align_center">
 						<a class="btn btn-success" href="', build_url(array('class', 'plus', $class['id'])), '">Add Plus</a>
 						<a class="btn btn-warning" href="', build_url(array('class', 'minus', $class['id'])), '">Add Minus</a>
+						<a class="btn" href="', build_url(array('class', 'random', $class['id'])), '">Random</a>
 						<a class="btn btn-info" href="', build_url(array('class', 'edit', $class['id'])), '">Edit</a>
 						<a class="btn btn-danger" href="', build_url(array('class', 'delete', $class['id'])), '">Delete</a>
 					</td>
@@ -167,4 +168,18 @@ function template_class_edit()
 			</fieldset>
 			<input type="hidden" name="class" value="', $template['class']['id'], '" />
 		</form>';
+}
+
+function template_class_random()
+{
+	global $template;
+
+	echo '
+		<div class="page-header">
+			<div class="pull-right">
+				<a class="btn" href="', build_url(array('class')), '">Back to List</a>
+			</div>
+			<h2>Random Student</h2>
+		</div>
+		<h3>', $template['student']['name'], ' ', $template['student']['surname'], '</h3>';
 }
